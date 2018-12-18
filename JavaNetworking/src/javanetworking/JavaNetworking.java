@@ -20,7 +20,7 @@ public class JavaNetworking extends JFrame implements Runnable
     final int portNumber = 5657;
     
     public static boolean gameStarted = false;
-    
+    int tc;
     String host = new String();
  
     public static boolean isConnecting = false;
@@ -34,7 +34,7 @@ public class JavaNetworking extends JFrame implements Runnable
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        frame.setTitle("Network");
+        frame.setTitle("Physics Engine");
         frame.setResizable(false);
     }    
     
@@ -300,7 +300,7 @@ public class JavaNetworking extends JFrame implements Runnable
                 e.printStackTrace();
             }
                     
-        // put all paint commands above this line
+        Draw.DrawAll(Object.getObjects(),g);
         gOld.drawImage(image, 0, 0, null);
     }
 
@@ -324,7 +324,7 @@ public class JavaNetworking extends JFrame implements Runnable
         {
             animate();
             repaint();
-            double seconds = .1; // time that 1 frame takes.
+            double seconds = 1.0/Window.frameRate; // time that 1 frame takes.
             int miliseconds = (int) (1000.0 * seconds);
             try
             {
@@ -341,12 +341,9 @@ public class JavaNetworking extends JFrame implements Runnable
      */
     public static void reset()
     {
-
+        Block.Create(30,30,300,300,10,0,0,0,0);
     }
 
-    /**
-     * Updates state of game
-     */
     public void animate()
     {
 
@@ -361,6 +358,10 @@ public class JavaNetworking extends JFrame implements Runnable
 
             reset();
         }
+        
+            Physics.Tick(Object.getObjects());
+        
+        tc++;
     }
 
     // //////////////////////////////////////////////////////////////////////////
