@@ -3,8 +3,8 @@ package javanetworking;
 import java.util.ArrayList;
 
 class Physics {
-    private final static int gravity = 1;
-    private final static int meter = 1;
+    private final static int gravity = -10;
+    private final static double meter = 0.1;
     
     
     
@@ -17,7 +17,7 @@ class Physics {
     static void physics(Object o){
         if(o.getType() == Object.ObjectType.BLOCK){
             Block b = (Block)o;
-            b.addAcceleration(0, gravity);
+            b.setAcceleration(0, (int) (gravity*meter));
             b.addVelocity();
             b.updatePosition();
         }

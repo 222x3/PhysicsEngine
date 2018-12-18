@@ -17,7 +17,7 @@ public class Draw {
         if(o.getType() == Object.ObjectType.BLOCK){
             Block b = (Block)o;
             g.setColor(Color.black);
-            g.fillRect(b.getX()-(b.getWidth()/2), b.getY()-(b.getHeight()/2), b.getWidth(), b.getHeight());
+            g.fillRect(b.getX()-(b.getWidth()/2), Window.getYNormal(b.getY()-(b.getHeight()/2)), b.getWidth(), b.getHeight());
         }
     } 
     

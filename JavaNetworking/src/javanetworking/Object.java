@@ -46,31 +46,39 @@ public class Object {
     
     ////////////////////////////////////////////////////////////////////////////
     
-    static void addObject(Object o){
-        objects.add(o);
-    }
+                                                                                //Accessors    
     static ArrayList<Object> getObjects(){
         return objects;
+    }   
+    static void addObject(Object o){
+        objects.add(o);
+    }    
+    ObjectType getType(){
+        return type;
+    }    
+    int getX(){
+        return x;
     }
-    void addAcceleration(int ax,int ay){
-        acceleration_x=ax;
-        acceleration_y=ay;
+    int getY(){
+        return y;
+    }
+    
+                                                                                //Mutators
+
+    void updatePosition(){
+        x+=velocity_x;
+        y+=velocity_y;
     }
     void addVelocity(){
         velocity_x+=acceleration_x;
         velocity_y+=acceleration_y;
     }
-    void updatePosition(){
-        x+=velocity_x;
-        y+=velocity_y;
+    void setAcceleration(int ax,int ay){
+        acceleration_x=ax;
+        acceleration_y=ay;
     }
-    ObjectType getType(){
-        return type;
-    }
-    int getX(){
-        return x;
-    }
-    int getY(){
-        return x;
-    }
+
+
+    
+
 }

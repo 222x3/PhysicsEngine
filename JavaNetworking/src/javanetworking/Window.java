@@ -4,8 +4,8 @@ package javanetworking;
 public class Window {
     static final int XBORDER = 0;
     static final int YBORDER = 0;
-    static final int YTITLE = 31;
-    static final int WINDOW_BORDER = 8; 
+    static final int YTITLE = 23;
+    static final int WINDOW_BORDER = 3; 
     static final int WINDOW_WIDTH = 2*(WINDOW_BORDER + XBORDER) + 960;
     static final int WINDOW_HEIGHT = YTITLE + WINDOW_BORDER + 960;    
 
@@ -26,7 +26,7 @@ public class Window {
     }
 
     public static int getY(int y) {
-        return (y + YTITLE );
+        return (y + YTITLE + WINDOW_BORDER );
 //        return (y + YBORDER + YTITLE );
         
     }

@@ -254,15 +254,12 @@ public class JavaNetworking extends JFrame implements Runnable
         
         
         
-        // far outer border
-        g.setColor(Color.black);
-        g.fillRect(0, 0, Window.xsize, Window.ysize);
-        // ----------------
 
-        // background
-      
+
+        // background      
         g.setColor(Color.white);
         g.fillPolygon(x, y, 4);
+        
         
         
 
@@ -300,6 +297,7 @@ public class JavaNetworking extends JFrame implements Runnable
                 e.printStackTrace();
             }
                     
+        
         Draw.DrawAll(Object.getObjects(),g);
         gOld.drawImage(image, 0, 0, null);
     }
@@ -358,7 +356,7 @@ public class JavaNetworking extends JFrame implements Runnable
 
             reset();
         }
-        
+        if(tc % Window.frameRate == Window.frameRate-1)
             Physics.Tick(Object.getObjects());
         
         tc++;
