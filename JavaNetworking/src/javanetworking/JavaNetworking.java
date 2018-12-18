@@ -11,16 +11,7 @@ import java.io.*;
 
 public class JavaNetworking extends JFrame implements Runnable
 {
-    public static final int XBORDER = 20;
-    public static final int YBORDER = 20;
-    public static final int YTITLE = 25;
-    public static final int WINDOW_WIDTH = 400;
-    public static final int WINDOW_HEIGHT = 400;
-    final public static int NUM_ROWS = 8;
-    final public static int NUM_COLUMNS = 8;
-    public static boolean animateFirstTime = true;
-    public static int xsize = -1;
-    public static int ysize = -1;
+
     public static Image image;
 
     public static Graphics2D g;
@@ -29,9 +20,6 @@ public class JavaNetworking extends JFrame implements Runnable
     final int portNumber = 5657;
     
     public static boolean gameStarted = false;
-    public static boolean myTurn;
-    public static int serverValue = 0;
-    public static int clientValue = 0;
     
     String host = new String();
  
@@ -43,7 +31,7 @@ public class JavaNetworking extends JFrame implements Runnable
     public static void main(String[] args)
     {
         JavaNetworking frame = new JavaNetworking();
-        frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setTitle("Network");
@@ -101,39 +89,9 @@ public class JavaNetworking extends JFrame implements Runnable
 
             public void keyPressed(KeyEvent e)
             {
-//add or modify.
-                if (myTurn && gameStarted && e.getKeyCode() == KeyEvent.VK_1)
-                {
-				if (isClient)
-                                {
-                                    System.out.println("sending from client");
-                                    clientValue++;
-                                    ClientHandler.sendPieceMove(clientValue);
-                                }
-				else
-                                {
-                                    System.out.println("sending from server");
-                                    serverValue++;
-                                    ServerHandler.sendPieceMove(serverValue);
-                                }			                    
-                }  
-                else if (myTurn && gameStarted && e.getKeyCode() == KeyEvent.VK_2)
-                {
-			if (isClient)
-                                {
-                                    System.out.println("sending from client");
-                                    clientValue+=2;
-					ClientHandler.sendPieceMove(clientValue);
-                                }
-				else
-                                {
-                                    System.out.println("sending from server");
-                                    serverValue+=2;
-					ServerHandler.sendPieceMove(serverValue);
-                                }	
-			                    
-                }                        
-                else if (e.getKeyCode() == KeyEvent.VK_S)
+
+               
+                if (e.getKeyCode() == KeyEvent.VK_S)
                 {
                     if (!isConnecting)
                     {                    
@@ -146,7 +104,6 @@ public class JavaNetworking extends JFrame implements Runnable
                             if (ServerHandler.connected)
                             {
                                 isClient = false;
-                                myTurn = false;
                                 gameStarted = true;
                                 isConnecting = false;
                             }                        
@@ -173,7 +130,6 @@ public class JavaNetworking extends JFrame implements Runnable
                                 if (ClientHandler.connected)
                                 {
                                     isClient = true;
-                                    myTurn = true;
                                     gameStarted = true;
                                     isConnecting = false;
                                 }
@@ -277,33 +233,30 @@ public class JavaNetworking extends JFrame implements Runnable
      */
     public void paint(Graphics gOld)
     {
-        if (image == null || xsize != getSize().width || ysize != getSize().height)
+        if (image == null || Window.xsize != getSize().width || Window.ysize != getSize().height)
         {
-            xsize = getSize().width;
-            ysize = getSize().height;
-            image = createImage(xsize, ysize);
+            Window.xsize = getSize().width;
+            Window.ysize = getSize().height;
+            image = createImage(Window.xsize, Window.ysize);
             g = (Graphics2D) image.getGraphics();
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         }
 
-        if (animateFirstTime)
+        if (Window.animateFirstTime)
         {
             gOld.drawImage(image, 0, 0, null);
             return;
         }
 
-        int x[] = {getX(0), getX(getWidth2()), getX(getWidth2()), getX(0), getX(0)};
-        int y[] = {getY(0), getY(0), getY(getHeight2()), getY(getHeight2()), getY(0)};
-        int ydelta = getHeight2() / NUM_ROWS;
-        int xdelta = getWidth2() / NUM_COLUMNS;
-        // put all paint commands under this line
+        int x[] = {Window.getX(0), Window.getX(Window.getWidth2()), Window.getX(Window.getWidth2()), Window.getX(0), Window.getX(0)};
+        int y[] = {Window.getY(0), Window.getY(0), Window.getY(Window.getHeight2()), Window.getY(Window.getHeight2()), Window.getY(0)};
 
         
         
         
         // far outer border
         g.setColor(Color.black);
-        g.fillRect(0, 0, xsize, ysize);
+        g.fillRect(0, 0, Window.xsize, Window.ysize);
         // ----------------
 
         // background
@@ -312,7 +265,7 @@ public class JavaNetworking extends JFrame implements Runnable
         g.fillPolygon(x, y, 4);
         
         
-//add or modify.   
+
         if (!gameStarted)
         {
             g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
@@ -334,25 +287,13 @@ public class JavaNetworking extends JFrame implements Runnable
         }            
 
 
-        {
-            g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
-            g.setColor(Color.black);
-            g.drawString("Client value " + clientValue,100,200);
-        }
-
-        {
-            g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
-            g.setColor(Color.black);
-            g.drawString("Server value " + serverValue,100,300);
-            
-        }
         
             try
             {
                 g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
                 g.setColor(Color.black);
-                g.drawString("Your IP address: " + InetAddress.getLocalHost().getHostAddress(), getX(10), getY(20));
-                g.drawString("Enter IP address: " + host, getX(10), getY(60));
+                g.drawString("Your IP address: " + InetAddress.getLocalHost().getHostAddress(), Window.getX(10), Window.getY(20));
+                g.drawString("Enter IP address: " + host, Window.getX(10), Window.getY(60));
             }
             catch (UnknownHostException e)
             {
@@ -409,13 +350,13 @@ public class JavaNetworking extends JFrame implements Runnable
     public void animate()
     {
 
-        if (animateFirstTime)
+        if (Window.animateFirstTime)
         {
-            animateFirstTime = false;
-            if (xsize != getSize().width || ysize != getSize().height)
+            Window.animateFirstTime = false;
+            if (Window.xsize != getSize().width || Window.ysize != getSize().height)
             {
-                xsize = getSize().width;
-                ysize = getSize().height;
+                Window.xsize = getSize().width;
+                Window.ysize = getSize().height;
             }
 
             reset();
@@ -441,32 +382,5 @@ public class JavaNetworking extends JFrame implements Runnable
         }
         relaxer = null;
     }
-    
 
-    // ///////////////////////////////////////////////////////////////////////
-    public static int getX(int x)
-    {
-        return (x + XBORDER);
-    }
-
-    public static int getY(int y)
-    {
-        return (y + YBORDER + YTITLE);
-    }
-
-    public static int getYNormal(int y)
-    {
-        return (-y + YBORDER + YTITLE + getHeight2());
-    }
-
-    public static int getWidth2()
-    {
-        return (xsize - getX(0) - XBORDER);
-    }
-
-    public static int getHeight2()
-    {
-        return (ysize - getY(0) - YBORDER);
-    }
-    
 }

@@ -68,11 +68,11 @@ public class ClientHandler
     {
 		if (connected)
 		{
-//add or modify.                 
+              
 //			out.println(-1 + ":" + val);
 			out.println(val + ":" + -1);
                         out.flush(); 
-                        JavaNetworking.myTurn = false;
+                        
 		}        
     }
 
@@ -105,13 +105,12 @@ public class ClientHandler
 								disconnect();
 								return;
 							}
-//add or modify.
-							// row:col:initrow:initcol
+
+							
 							int post0 = Integer.parseInt(inputLine.split(":")[0]);
 							int post1 = Integer.parseInt(inputLine.split(":")[1]);
                                                         
-                                                        JavaNetworking.serverValue=post0;
-                                                        JavaNetworking.myTurn = true;
+
 						}
 						catch (NumberFormatException e)
 						{

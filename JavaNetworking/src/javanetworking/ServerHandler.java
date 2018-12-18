@@ -64,10 +64,10 @@ public class ServerHandler
     {
 		if (connected)
 		{
-//add or modify.                    
+                  
 			pw.println(val + ":" + -1);
                         pw.flush(); 
-                        JavaNetworking.myTurn = false;
+
 		}            
     }
 
@@ -100,12 +100,11 @@ public class ServerHandler
                                 disconnect();
                                 return;
                             }
-                            // row:col:initrow:initcol
-//add or modify.                            
+
+                            
                             int post0 = Integer.parseInt(inputLine.split(":")[0]);
                             int post1 = Integer.parseInt(inputLine.split(":")[1]);
-                            JavaNetworking.clientValue=post0;
-                            JavaNetworking.myTurn = true;
+
                         }
                         catch (NumberFormatException e)
                         {
