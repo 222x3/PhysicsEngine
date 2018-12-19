@@ -1,15 +1,15 @@
 
 package javanetworking;
 public class Block extends Object{
-    private int width;
-    private int height;
-    Block(int _w , int _h , int _x,int _y,double m,int vx,int vy, int ax,int ay){
+    private double width;
+    private double height;
+    Block(double _w , double _h , double _x,double _y,double m,double vx,double vy, double ax,double ay){
         super(_x,_y,m,vx,vy,ax,ay,Object.ObjectType.BLOCK);
         width=_w;
         height=_h;
     }
     
-    static void Create(int _w , int _h , int _x,int _y,double m,int vx,int vy, int ax,int ay){
+    static void Create(double _w , double _h , double _x,double _y,double m,double vx,double vy, double ax,double ay){
         Block b = new Block(_w,_h,_x,_y,m,vx,vy,ax,ay);
         Object.addObject(b);
     }
@@ -32,10 +32,10 @@ public class Block extends Object{
     
     
     ////////////////////////////////////////////////////////////////////////////
-    int getWidth(){
+    double getWidth(){
         return width;
     }
-    int getHeight(){
+    double getHeight(){
         return width;
     }
 }

@@ -10,21 +10,21 @@ public class Object {
     
     private static ArrayList<Object> objects = new ArrayList<Object>();
     
-    private int x; //Position
-    private int y; //Position
+    private double x; //Position
+    private double y; //Position
     
     private double mass; //Measured in kilograms
     
-    private int velocity_x; //meters per second 
-    private int velocity_y; //meters per second 
+    private double velocity_x; //meters per second 
+    private double velocity_y; //meters per second 
     
-    private int acceleration_x; //meters per second squared
-    private int acceleration_y; //meters per second squared
+    private double acceleration_x; //meters per second squared
+    private double acceleration_y; //meters per second squared
     
     private ObjectType type; //Type of object
     
     
-    Object(int _x,int _y,double m,int vx,int vy, int ax,int ay, ObjectType _type){
+    Object(double _x,double _y,double m,double vx,double vy, double ax,double ay, ObjectType _type){
         x=_x;
         y=_y;
         mass=m;
@@ -56,10 +56,10 @@ public class Object {
     ObjectType getType(){
         return type;
     }    
-    int getX(){
+    double getX(){
         return x;
     }
-    int getY(){
+    double getY(){
         return y;
     }
     
@@ -73,7 +73,7 @@ public class Object {
         velocity_x+=acceleration_x;
         velocity_y+=acceleration_y;
     }
-    void setAcceleration(int ax,int ay){
+    void setAcceleration(double ax,double ay){
         acceleration_x=ax;
         acceleration_y=ay;
     }

@@ -20,7 +20,6 @@ public class JavaNetworking extends JFrame implements Runnable
     final int portNumber = 5657;
     
     public static boolean gameStarted = false;
-    int tc;
     String host = new String();
  
     public static boolean isConnecting = false;
@@ -356,10 +355,10 @@ public class JavaNetworking extends JFrame implements Runnable
 
             reset();
         }
-        if(tc % Window.frameRate == Window.frameRate-1)
+        
             Physics.Tick(Object.getObjects());
         
-        tc++;
+
     }
 
     // //////////////////////////////////////////////////////////////////////////

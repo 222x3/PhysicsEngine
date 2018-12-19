@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 class Physics {
     private final static int gravity = -10;
-    private final static double meter = 0.1;
+    private final static double meter = 0.01;
     
     
     
@@ -17,7 +17,7 @@ class Physics {
     static void physics(Object o){
         if(o.getType() == Object.ObjectType.BLOCK){
             Block b = (Block)o;
-            b.setAcceleration(0, (int) (gravity*meter));
+            b.setAcceleration(0, (gravity*meter));
             b.addVelocity();
             b.updatePosition();
         }

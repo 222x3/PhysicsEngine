@@ -31,7 +31,7 @@ public class Window {
         
     }
 
-    public static int getYNormal(int y) {
+    public static double getYNormal(double y) {
         return (-y + YTITLE + getHeight2());
 //        return (-y + YBORDER + YTITLE + getHeight2());
         
